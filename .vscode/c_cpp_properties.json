@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${default}"
+            ],
+            "defines": [],
+            "compilerPath": "${Z88DK_HOME}/bin/zcc"
+        }
+    ],
+    "version": 4
+}

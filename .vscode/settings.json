@@ -1,0 +1,16 @@
+{
+  "files.associations": {
+    "esxdos.h": "c",
+    "stdio.h": "c",
+    "zxn.h": "c",
+    "config_zxn.h": "c",
+    "unistd.h": "c",
+    "string.h": "c",
+    "arch.h": "c",
+    "config_zx.h": "c"
+  },
+  "C_Cpp.default.includePath": [
+    "${default}",
+    "${env:Z88DK_HOME}/include"
+  ]
+}
