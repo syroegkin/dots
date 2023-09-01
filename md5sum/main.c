@@ -39,9 +39,9 @@ int main()
    
   atexit(cleanup);
 
-  puts("Hello, fucking world!");
+  puts("Hello next!");
   uint8_t result[16];
-  md5String("Hello, fucking world!", result);
+  md5String("Hello next!", result);
   print_hash(result);
   return 0;
 }
