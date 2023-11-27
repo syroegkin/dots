@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
+#include <arch/zxn/esxdos.h>
 
 typedef struct{
     uint64_t size;        // Size of input in bytes
@@ -19,6 +20,6 @@ void md5Finalize(MD5Context *ctx);
 void md5Step(uint32_t *buffer, uint32_t *input);
 
 void md5String(char *input, uint8_t *result);
-// void md5File(FILE *file, uint8_t *result);
+void md5File(unsigned char *file, uint32_t len, uint8_t *result);
 
 #endif

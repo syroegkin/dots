@@ -204,20 +204,33 @@ void md5String(char *input, uint8_t *result){
     memcpy(result, ctx.digest, 16);
 }
 
-// void md5File(FILE *file, uint8_t *result){
-//     char *input_buffer = malloc(1024);
-//     size_t input_size = 0;
+void md5File(
+    unsigned char *file,
+    uint32_t len,
+    uint8_t *result
+){
+    unsigned char input_buffer[1024];
+    size_t input_size = 0;
+    uint16_t bytesRead = 0;
+    uint16_t br = 0;
 
-//     MD5Context ctx;
-//     md5Init(&ctx);
+    MD5Context ctx;
+    md5Init(&ctx);
 
-//     while((input_size = fread(input_buffer, 1, 1024, file)) > 0){
-//         md5Update(&ctx, (uint8_t *)input_buffer, input_size);
-//     }
+    do {
+        bytesRead = esx_f_read(*file,input_buffer,1024);
+        printf("%db ", bytesRead);
+        if (bytesRead > 0) {
+            md5Update(
+                &ctx,
+                (uint8_t *)input_buffer,
+                // input_size
+                bytesRead
+            );
+        }
+    } while (bytesRead > 0);
 
-//     md5Finalize(&ctx);
+    md5Finalize(&ctx);
 
-//     free(input_buffer);
-
-//     memcpy(result, ctx.digest, 16);
-// }
+    memcpy(result, ctx.digest, 16);
+}

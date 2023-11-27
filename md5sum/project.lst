@@ -1,2 +1,2 @@
 main.c
-md5.c
+lib/md5/md5.c

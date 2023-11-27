@@ -7,7 +7,15 @@
     "unistd.h": "c",
     "string.h": "c",
     "arch.h": "c",
-    "config_zx.h": "c"
+    "config_zx.h": "c",
+    "cstdio": "c",
+    "fstream": "c",
+    "err.h": "c",
+    "random": "c",
+    "md5.h": "c",
+    "stdlib.h": "c",
+    "cli.h": "c",
+    "memory_resource": "c"
   },
   "C_Cpp.default.includePath": [
     "${default}",
