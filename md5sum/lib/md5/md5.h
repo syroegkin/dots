@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <arch/zxn/esxdos.h>
 
+#define MD5_READ_CHUNK_SIZE 1024
+
 typedef struct{
     uint64_t size;        // Size of input in bytes
     uint32_t buffer[4];   // Current accumulation of hash

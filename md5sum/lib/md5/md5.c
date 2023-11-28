@@ -209,7 +209,7 @@ void md5File(
     uint32_t len,
     uint8_t *result
 ){
-    unsigned char input_buffer[1024];
+    unsigned char input_buffer[MD5_READ_CHUNK_SIZE];
     size_t input_size = 0;
     uint16_t bytesRead = 0;
     uint16_t br = 0;
@@ -218,7 +218,11 @@ void md5File(
     md5Init(&ctx);
 
     do {
-        bytesRead = esx_f_read(*file,input_buffer,1024);
+        bytesRead = esx_f_read(
+            *file,
+            input_buffer,
+            MD5_READ_CHUNK_SIZE
+        );
         printf("%db ", bytesRead);
         if (bytesRead > 0) {
             md5Update(
