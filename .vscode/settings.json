@@ -15,7 +15,9 @@
     "md5.h": "c",
     "stdlib.h": "c",
     "cli.h": "c",
-    "memory_resource": "c"
+    "memory_resource": "c",
+    "strings.h": "c",
+    "errno.h": "c"
   },
   "C_Cpp.default.includePath": [
     "${default}",

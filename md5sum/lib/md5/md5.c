@@ -206,8 +206,8 @@ void md5String(char *input, uint8_t *result){
 
 void md5File(
     unsigned char *file,
-    uint32_t len,
-    uint8_t *result
+    uint8_t *result,
+    uint8_t progress
 ){
     unsigned char input_buffer[MD5_READ_CHUNK_SIZE];
     size_t input_size = 0;
@@ -223,7 +223,9 @@ void md5File(
             input_buffer,
             MD5_READ_CHUNK_SIZE
         );
-        printf("%db ", bytesRead);
+        if (progress == 1) {
+            putchar('.');
+        }
         if (bytesRead > 0) {
             md5Update(
                 &ctx,
@@ -237,4 +239,8 @@ void md5File(
     md5Finalize(&ctx);
 
     memcpy(result, ctx.digest, 16);
+
+    if (progress == 1) {
+        puts("\n");
+    }
 }

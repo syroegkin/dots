@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
             return 1;
         }
 
-        md5File(&fin, 0, result);
+        md5File(&fin, result, args->progress);
         
         // Close the file
         esx_f_close(fin);
