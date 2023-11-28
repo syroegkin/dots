@@ -9,7 +9,7 @@
 #include "lib/md5/md5.h"
 
 // Debug
-#define DEBUG 1
+// #define DEBUG 1
 
 // Missing 28mhz variable
 #ifndef __RTM_28MHZ
@@ -37,7 +37,6 @@ void print_hash(uint8_t *p){
     for(unsigned int i = 0; i < 16; ++i){
         printf("%02x", p[i]);
     }
-    puts("");
 }
 
 int main(int argc, char *argv[]) {
@@ -104,6 +103,9 @@ int main(int argc, char *argv[]) {
     if (args->output == 0) {
         // Result to the screen
         print_hash(result);
+        if (args->noNewLine == 0) {
+            puts("");
+        }
     } else {
         // Result to the file
 

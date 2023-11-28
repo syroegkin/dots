@@ -16,6 +16,8 @@ static char *cliOptions[] = {
     "-p",
     // Output file
     "-o",
+    // No new lines
+    "-n",
 };
 
 #define OP_H cliOptions[0]
@@ -24,6 +26,7 @@ static char *cliOptions[] = {
 #define OP_S cliOptions[3]
 #define OP_P cliOptions[4]
 #define OP_O cliOptions[5]
+#define OP_N cliOptions[6]
 
 void usage(void) {
     puts("usage: .md5sum [-p | -s | -f | -h]");
@@ -64,6 +67,7 @@ CommandLineOptions* getCommandLineOptions(int argc, char *argv[]) {
     CLO.help = 0;
     CLO.progress = 0;
     CLO.output = 0;
+    CLO.noNewLine = 0;
 
     if (argc < 2) {
         usage();
@@ -80,6 +84,11 @@ CommandLineOptions* getCommandLineOptions(int argc, char *argv[]) {
         // Check for the help
         if (strcmp(argv[i], OP_H) == 0 || strcmp(argv[i], OP_HELP) == 0) {
             CLO.help = 1;
+        }
+
+        // Check for new line
+        if (strcmp(argv[i], OP_N) == 0) {
+            CLO.noNewLine = 1;
         }
 
         if (strcmp(argv[i], OP_F) == 0) {

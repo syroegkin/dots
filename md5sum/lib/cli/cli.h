@@ -10,6 +10,7 @@ typedef struct {
     unsigned char compare;      // Compare file and its md5
     unsigned char file;         // Use file for input
     unsigned char output;       // To produce the ouptut file with the hash result
+    unsigned char noNewLine;    // Do or do not place the new line after result.
     char *filename;             // The filename to operate with
     char *outputFilename;       // Output filename
 } CommandLineOptions;
