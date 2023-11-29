@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${default}"
+                "${default}",
+                "${Z88DK_HOME}/include"
             ],
             "defines": [],
             "compilerPath": "${Z88DK_HOME}/bin/zcc"
