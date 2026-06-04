@@ -12,7 +12,7 @@ ifeq ($(COPY_SNAPSHOT_TO),)
 	COPY_SNAPSHOT_TO := /tmp/quicksave.sna
 endif
 
-.PHONY: all clean build run copy
+.PHONY: all clean build run copy test
 
 all: build
 
@@ -42,6 +42,9 @@ copy: build ## Build and copy snapshot to given path
 
 clean: ## Remove artifacts
 	rm -rf $(BUILD_FOLDER)
+
+test: ## Run host-based unit/golden tests (run from repo root)
+	./test/run.sh
 
 help: 	## Display available commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' 

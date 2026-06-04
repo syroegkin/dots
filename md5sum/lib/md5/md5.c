@@ -211,7 +211,6 @@ void md5File(
 ){
     unsigned char input_buffer[MD5_READ_CHUNK_SIZE];
     uint16_t bytesRead = 0;
-    uint16_t br = 0;
 
     MD5Context ctx;
     md5Init(&ctx);
