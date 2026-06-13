@@ -33,6 +33,42 @@ Run `make test` from the repo root to execute the host-based test suite (see
 
 z88dk v2.3 is used as a compiler.
 
+## Versioning
+
+Each command is versioned independently with [semantic versioning](https://semver.org).
+The source of truth is the `VERSION` file in the command's directory; its value is
+stamped into that command's `<name>.zxpkg.toml` manifest and the version badge in its
+`README.md`.
+
+Run these from inside a command's directory (e.g. `cd morse`):
+
+| Command | Effect |
+|---|---|
+| `make version` | Print the current version. |
+| `make bump-patch` | `1.0.0 → 1.0.1` (bug fixes), then sync the manifest + README. |
+| `make bump-minor` | `1.0.0 → 1.1.0` (new features), then sync. |
+| `make bump-major` | `1.0.0 → 2.0.0` (breaking changes), then sync. |
+| `make sync-version` | Re-stamp `VERSION` into the manifest + README without bumping. |
+
+`make` (the default build) runs `sync-version` automatically, so the manifest and
+README never drift from `VERSION`. Bumping is always a deliberate, separate step —
+builds never change the version on their own.
+
+## Publishing to pkg.zx.in.net
+
+Each command ships a `<name>.zxpkg.toml` manifest so it can be indexed by the
+[ZXPkg registry](https://pkg.zx.in.net). One repository can ship several packages —
+the registry indexes every `*.zxpkg.toml` it finds.
+
+To list this repository on the registry, submit it once at
+<https://pkg.zx.in.net/new>. After that the portal re-crawls the default branch on a
+schedule: whenever a command's manifest `version` changes (via a `bump-*` build), the
+portal cuts and archives a new version of that package automatically.
+
+The manifest's `[[artifact]].src` points at the committed binary under `build/`
+(e.g. `morse/build/MORSE`), so make sure the freshly built binary is committed before
+pushing a release.
+
 ## Contribution
 
 Feel free to contribute additional dot commands or improvements to existing ones. Follow these steps:
