@@ -51,13 +51,13 @@ Run these from inside a command's directory (e.g. `cd morse`):
 | `make sync-version` | Re-stamp `VERSION` into the manifest + README without bumping. |
 
 `make` (the default build) runs `sync-version` automatically, so the manifest and
-README never drift from `VERSION`. Bumping is always a deliberate, separate step —
+README never drift from `VERSION`. Bumping is always a deliberate, separate step,
 builds never change the version on their own.
 
 ## Publishing to pkg.zx.in.net
 
 Each command ships a `<name>.zxpkg.toml` manifest so it can be indexed by the
-[ZXPkg registry](https://pkg.zx.in.net). One repository can ship several packages —
+[ZXPkg registry](https://pkg.zx.in.net). One repository can ship several packages,
 the registry indexes every `*.zxpkg.toml` it finds.
 
 To list this repository on the registry, submit it once at
