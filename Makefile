@@ -12,11 +12,24 @@ ifeq ($(COPY_SNAPSHOT_TO),)
 	COPY_SNAPSHOT_TO := /tmp/quicksave.sna
 endif
 
-.PHONY: all clean build run copy test
+# --- Semantic versioning ------------------------------------------------------
+# version.sh resolved relative to THIS makefile, so it works whether make runs
+# in a command subdir (../scripts) or at the repo root (./scripts).
+ROOT_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
+VERSION_SCRIPT := $(ROOT_DIR)scripts/version.sh
+
+# Stamp the manifest + README from VERSION on every build — but only in a
+# command directory (one that actually has a VERSION file).
+SYNC_DEP :=
+ifneq ($(wildcard VERSION),)
+SYNC_DEP := sync-version
+endif
+
+.PHONY: all clean build run copy test version sync-version bump-patch bump-minor bump-major
 
 all: build
 
-prepareBuild:
+prepareBuild: $(SYNC_DEP)
 	@printf "\033[32mBuilding '$(PROJECT_NAME)'\033[0m\n"
 	mkdir -p $(BUILD_FOLDER)
 	rm -rf $(BUILD_FOLDER)/*
@@ -45,6 +58,21 @@ clean: ## Remove artifacts
 
 test: ## Run host-based unit/golden tests (run from repo root)
 	./test/run.sh
+
+version: ## Print this command's current version
+	@$(VERSION_SCRIPT) current .
+
+sync-version: ## Stamp VERSION into this command's .zxpkg.toml + README
+	$(VERSION_SCRIPT) sync .
+
+bump-patch: ## Bump the patch version (1.0.0 -> 1.0.1), then sync
+	$(VERSION_SCRIPT) bump . patch
+
+bump-minor: ## Bump the minor version (1.0.0 -> 1.1.0), then sync
+	$(VERSION_SCRIPT) bump . minor
+
+bump-major: ## Bump the major version (1.0.0 -> 2.0.0), then sync
+	$(VERSION_SCRIPT) bump . major
 
 help: 	## Display available commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' 

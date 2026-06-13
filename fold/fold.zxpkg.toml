@@ -1,0 +1,19 @@
+# ZXPkg manifest for pkg.zx.in.net. The version line is stamped from ./VERSION
+# by `make sync-version` (run on every build) edit VERSION, not this line.
+[package]
+name        = "fold"
+version     = "1.0.0"
+type        = "dot"
+description = "Wrap input lines to fit within a given width."
+author      = "syroegkin"
+license     = "BSD-3-Clause"
+homepage    = "https://github.com/syroegkin/dots"
+
+[compat]
+machine  = "next"
+os       = ["nextzxos"]
+needs    = []
+
+[[artifact]]
+src     = "fold/build/FOLD"
+command = "FOLD"

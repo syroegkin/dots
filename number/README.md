@@ -1,5 +1,7 @@
 # Number
 
+`v1.0.0`
+
 Convert numbers to their English-language equivalent (e.g. `2026` becomes
 "two thousand twenty-six").
 

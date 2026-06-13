@@ -1,0 +1,19 @@
+# ZXPkg manifest for pkg.zx.in.net. The version line is stamped from ./VERSION
+# by `make sync-version` (run on every build) edit VERSION, not this line.
+[package]
+name        = "md5sum"
+version     = "1.0.0"
+type        = "dot"
+description = "Calculate the MD5 hash of a file."
+author      = "syroegkin"
+license     = "GPL-3.0"
+homepage    = "https://github.com/syroegkin/dots"
+
+[compat]
+machine  = "next"
+os       = ["nextzxos"]
+needs    = []
+
+[[artifact]]
+src     = "md5sum/build/MD5SUM"
+command = "MD5SUM"

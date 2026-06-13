@@ -1,5 +1,7 @@
 # Fold
 
+`v1.0.0`
+
 Wrap each input line of a file to fit within a given number of columns — handy
 for reading PC-authored text (≈80-column lines) on the Next's narrow screen.
 

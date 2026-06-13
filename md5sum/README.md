@@ -1,5 +1,7 @@
 # MD5SUM
 
+`v1.0.0`
+
 Print MD5 (128-bit) checksums.
 
 ## Installation

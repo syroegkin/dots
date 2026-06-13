@@ -1,5 +1,7 @@
 # Morse
 
+`v1.0.0`
+
 This tool allows you to reformat input as Morse code and decode Morse code.
 
 ## Installation
